@@ -3,6 +3,8 @@ package uk.ac.ucl.servlets;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.FileItem;
+import uk.ac.ucl.model.Model;
+import uk.ac.ucl.model.ModelFactory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -74,12 +76,16 @@ public class uploadServlet extends HttpServlet {
 
                         item.write(storeFile);
                         request.setAttribute("message", "Successfully Uploaded");
+
+                        //update the Patient List
+                        ModelFactory.setModel(filePath);
                     }
                 }
             }
         }catch (Exception e){
             request.setAttribute("message", "ERROR happened: " + e.getMessage());
         }
+
 
 
         // Invoke JSP

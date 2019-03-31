@@ -19,8 +19,15 @@ public class ModelFactory
     if (model == null)
     {
       model = new Model();
-      model.readFile((new File("./data/patients100.csv")));
+      model.readFile((new File("./data/patients.csv")));
     }
     return model;
+  }
+
+  public static Model setModel(String filePath) throws IOException{
+      model = new Model();
+      model.readFile(new File(filePath));
+
+      return model;
   }
 }
